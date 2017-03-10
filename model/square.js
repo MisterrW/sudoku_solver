@@ -4,15 +4,14 @@ class Square {
     this.possibles = [true, true, true, true, true, true, true, true, true]
     if(data.value){
       this.value = data.value
+      this.possibles = [false, false, false, false, false, false, false, false, false]
       this.possibles.forEach((possible, index) => {
-        console.log("index in possibles: ", index)
-        console.log("this value: ", this.value)
-        if (!this.value === index ){
-          possible = false
+        if (this.value-1 === index ){
+          this.possibles[index] = true
         }
       })
-      console.log(this.possibles)
     }
+    console.log(this.possibles)
   }
 
   checkIfValueFound(){

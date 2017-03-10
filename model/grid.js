@@ -2,20 +2,10 @@ var Square = require('./square')
 
 class Grid {
   constructor(inputGrid){
-
-    this.grid = [
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-      [[], [], [], [], [], [], [], [], []],
-    ]
+    this.grid = []
 
     inputGrid.forEach((row, rowIndex) => {
+      this.grid[rowIndex] = []
       row.forEach((square, columnIndex) => {
         if (square !== "-") {
           this.grid[rowIndex][columnIndex] = new Square({value: square[0]})
@@ -35,9 +25,9 @@ class Grid {
       row.forEach((square, columnIndex) => {
         if (square.value) {
           gridToPrint[rowIndex][columnIndex] = square.value.toString()
-          console.log("Value is ", square.value.toString())
+          // console.log("Value is ", square.value.toString())
         } else {
-          console.log("no value")
+          // console.log("no value")
           gridToPrint[rowIndex][columnIndex] = " "
         }
       })
