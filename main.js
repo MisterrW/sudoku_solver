@@ -20,6 +20,10 @@ class Main {
     ]
 
     this.grid = new Grid(this.testGrid)
+
+    // console.log(this.grid.grid[1][5])
+
+    this.grid.grid[1][7].checkIfValueFound()
   }
 }
 

@@ -11,19 +11,34 @@ class Square {
         }
       })
     }
-    console.log(this.possibles)
+    // console.log(this.possibles)
+  }
+
+  listRemainingPossibilities() {
+    let possiblitiesList = []
+    this.possibles.forEach((possibile, index) => {
+      if (possibile === true) {
+        possiblitiesList.push(index+1)
+      }
+    })
+    let possiblitiesString = possiblitiesList.join(", ")
+    return possiblitiesString
   }
 
   checkIfValueFound(){
     const possiblesLeft = []
     this.possibles.forEach((possible, index) => {
       if (possible === true) {
-        possiblesLeft.push(index)
+        possiblesLeft.push(index+1)
       }
     })
     if (possiblesLeft.length === 1) {
       this.value = possiblesLeft[0]
+      console.log("Value found! value is ", this.value)
+    } else {
+      console.log("Value not found yet. Remaining possibilites: ", this.listRemainingPossibilities())
     }
+
   }
 
 }
