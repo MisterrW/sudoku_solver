@@ -5,9 +5,13 @@ I'm trying to do this just by describing in code the haphazard ways I solve sudo
 TODO
 
 something to scrape rendered HTML puzzles into format so I don't have to type any more
+
 More complex checks:
+
 take into account constrained possiblities in other squares, not just final values - this will need to apply both
+
 --within current (ie row) and
+
 --across types (ie row aware of constraints across intersecting column)
 
 DONE
