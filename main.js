@@ -1,10 +1,11 @@
 var Grid = require('./model/grid.js')
+var Check = require('./model/check.js')
 
 class Main {
 
   constructor(){
 
-    console.log("in main constructor")
+    this.check = new Check()
     this.testGrid = [
 
       [[1], [ ], [ ], [5], [2], [ ], [ ], [ ], [9]],
@@ -20,10 +21,30 @@ class Main {
     ]
 
     this.grid = new Grid(this.testGrid)
+    this.grid.checkAllSquares()
+    this.grid.printGrid()
 
-    // console.log(this.grid.grid[1][5])
+    this.allChecks()
+    this.allChecks()
+    this.allChecks()
+    this.allChecks()
+  }
 
-    this.grid.grid[1][7].checkIfValueFound()
+  allChecks(){
+    console.log("Checking rows")
+    this.check.rows(this.grid)
+    this.grid.checkAllSquares()
+    this.grid.printGrid()
+
+    console.log("Checking columns")
+    this.check.columns(this.grid)
+    this.grid.checkAllSquares()
+    this.grid.printGrid()
+
+    console.log("Checking 3x3s")
+    this.check.threeXthrees(this.grid)
+    this.grid.checkAllSquares()
+    this.grid.printGrid()
   }
 }
 

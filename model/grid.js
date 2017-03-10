@@ -14,8 +14,14 @@ class Grid {
         }
       })
     })
+  }
 
-    this.printGrid()
+  checkAllSquares(){
+    for(var c = 0; c < this.grid[0].length; c++){
+      for(var r = 0; r < this.grid.length; r++) {
+        this.grid[r][c].checkIfValueFound()
+      }
+    }
   }
 
   printGrid(){

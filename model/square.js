@@ -34,11 +34,17 @@ class Square {
     })
     if (possiblesLeft.length === 1) {
       this.value = possiblesLeft[0]
-      console.log("Value found! value is ", this.value)
+      // console.log("Value found! value is ", this.value)
     } else {
-      console.log("Value not found yet. Remaining possibilites: ", this.listRemainingPossibilities())
+      // console.log("Value not found yet. Remaining possibilites: ", this.listRemainingPossibilities())
     }
 
+  }
+
+
+
+  markOff(value){
+    this.possibles[value-1] = false
   }
 
 }
