@@ -1,6 +1,6 @@
-import Square from './square'
+var Square = require('./square')
 
-export default class Grid {
+class Grid {
   constructor(inputGrid){
 
     this.grid = [
@@ -15,15 +15,41 @@ export default class Grid {
       [[], [], [], [], [], [], [], [], []],
     ]
 
-    inputGrid.eachWithIndex((row, rowIndex) => {
-      row.eachWithIndex((square, columnIndex) => {
+    inputGrid.forEach((row, rowIndex) => {
+      row.forEach((square, columnIndex) => {
         if (square !== "-") {
-          this.grid[rowIndex][columnIndex] = new Square({value: square})
+          this.grid[rowIndex][columnIndex] = new Square({value: square[0]})
         } else {
           this.grid[rowIndex][columnIndex] = new Square()
         }
       })
     })
+
+    this.printGrid()
+  }
+
+  printGrid(){
+    const gridToPrint = [[], [], [], [], [], [], [], [], []]
+
+    this.grid.forEach((row, rowIndex) => {
+      row.forEach((square, columnIndex) => {
+        if (square.value) {
+          gridToPrint[rowIndex][columnIndex] = square.value.toString()
+          console.log("Value is ", square.value.toString())
+        } else {
+          console.log("no value")
+          gridToPrint[rowIndex][columnIndex] = " "
+        }
+      })
+    })
+
+    console.log("Grid printing.")
+    gridToPrint.forEach((row) => {
+      console.log(row)
+    })
+
   }
 
 }
+
+module.exports = Grid
