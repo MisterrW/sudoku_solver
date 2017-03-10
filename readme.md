@@ -1,0 +1,3 @@
+Sudoku solver.
+
+I'm trying to do this just by describing in code the haphazard ways I solve sudokus. So it probably won't seem particularly logical...
