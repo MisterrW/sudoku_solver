@@ -41,10 +41,12 @@ class Square {
 
   }
 
-
-
   markOff(value){
     this.possibles[value-1] = false
+  }
+
+  setValueFromPossible(index){
+    this.value = index+1
   }
 
 }

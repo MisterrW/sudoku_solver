@@ -49,7 +49,7 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.easyGrid
+    this.testGrid = this.medGrid
 
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
@@ -62,17 +62,17 @@ class Main {
     console.log("Checking rows")
     this.check.rows(this.grid)
     this.grid.checkAllSquares()
-    this.grid.printGrid()
+    // this.grid.printGrid()
 
     console.log("Checking columns")
     this.check.columns(this.grid)
     this.grid.checkAllSquares()
-    this.grid.printGrid()
+    // this.grid.printGrid()
 
     console.log("Checking 3x3s")
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
-    this.grid.printGrid()
+    // this.grid.printGrid()
 
     this.completeCheck()
   }
@@ -87,6 +87,9 @@ class Main {
       console.log("round", this.rounds+1)
       if (this.lastCheckedValue === this.grid.checkAllSquares()){
         console.log("I can't solve this. Make me better!")
+        console.log(this.grid.grid[1][4])
+        console.log(this.grid.grid[2][3])
+        console.log(this.grid.grid[2][4])
       } else {
         this.lastCheckedValue = this.grid.checkAllSquares()
         this.allChecks()

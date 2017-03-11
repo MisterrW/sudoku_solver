@@ -5,6 +5,7 @@ class Check{
   rows(grid){
     grid.grid.forEach((row) => {
       this.unitMarkOff(row)
+      this.unitCheckExclusivePossible(row)
     })
   }
 
@@ -15,6 +16,7 @@ class Check{
         column.push(row[c])
       })
       this.unitMarkOff(column)
+      this.unitCheckExclusivePossible(column)
     }
   }
 
@@ -28,7 +30,11 @@ class Check{
             threeXThree.push(grid.grid[colStart+i][rowStart+j])
           }
         }
+        if (rowStart = 0 && colStart == 3){
+          console.log(grid.grid[rowStart][colStart])
+        }
         this.unitMarkOff(threeXThree)
+        this.unitCheckExclusivePossible(threeXThree)
       })
     })
   }
@@ -39,6 +45,32 @@ class Check{
         unit.forEach((square) => {
           if (! square.value) {
             square.markOff(squareCheckingAgainst.value)
+          }
+        })
+      }
+    })
+  }
+
+  unitCheckExclusivePossible(unit){
+    unit.forEach((square) => {
+      if (! square.value){
+        square.possibles.forEach((possible, index1) => {
+          if(possible === true){
+            let unique = true
+            unit.forEach((otherSquare) => {
+              if (square !== otherSquare){
+                otherSquare.possibles.forEach((otherPossible, index2) => {
+                  if(otherPossible === true){
+                    if(index1 === index2){
+                      unique = false
+                    }
+                  }
+                })
+              }
+            })
+            if(unique === true){
+              square.setValueFromPossible(index1)
+            }
           }
         })
       }
