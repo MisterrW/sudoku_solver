@@ -17,11 +17,15 @@ class Grid {
   }
 
   checkAllSquares(){
+    let completedSquares = 0
     for(var c = 0; c < this.grid[0].length; c++){
       for(var r = 0; r < this.grid.length; r++) {
-        this.grid[r][c].checkIfValueFound()
+        if (this.grid[r][c].checkIfValueFound()){
+          completedSquares += 1
+        }
       }
     }
+    return completedSquares
   }
 
   printGrid(){

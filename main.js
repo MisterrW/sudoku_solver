@@ -6,8 +6,23 @@ class Main {
   constructor(){
 
     this.check = new Check()
-    this.testGrid = [
+    this.rounds = 0
 
+    this.medGrid = [
+      //medium
+      [[ ], [2], [ ], [3], [ ], [1], [7], [ ], [ ]],
+      [[ ], [ ], [3], [ ], [ ], [8], [ ], [5], [6]],
+      [[ ], [7], [8], [ ], [ ], [6], [ ], [9], [ ]],
+      [[3], [ ], [2], [ ], [8], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [3], [ ], [4], [ ], [5]],
+      [[ ], [6], [ ], [5], [ ], [ ], [9], [8], [ ]],
+      [[9], [3], [ ], [8], [ ], [ ], [6], [ ], [ ]],
+      [[ ], [ ], [7], [6], [ ], [3], [ ], [2], [ ]],
+
+    ]
+    this.easyGrid = [
+    // easy
       [[1], [ ], [ ], [5], [2], [ ], [ ], [ ], [9]],
       [[2], [3], [ ], [1], [4], [6], [5], [ ], [7]],
       [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [2], [ ]],
@@ -20,13 +35,26 @@ class Main {
 
     ]
 
+    // this.testGrid = [
+    //
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+    //
+    // ]
+
+    this.testGrid = this.easyGrid
+
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
     this.grid.printGrid()
 
-    this.allChecks()
-    this.allChecks()
-    this.allChecks()
     this.allChecks()
   }
 
@@ -45,6 +73,25 @@ class Main {
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
     this.grid.printGrid()
+
+    this.completeCheck()
+  }
+
+  completeCheck(){
+    this.rounds += 1
+    console.log(this.grid.checkAllSquares())
+
+    if (this.grid.checkAllSquares() === 81){
+      console.log("game complete in", this.rounds, "rounds of checks")
+    } else {
+      console.log("round", this.rounds+1)
+      if (this.lastCheckedValue === this.grid.checkAllSquares()){
+        console.log("I can't solve this. Make me better!")
+      } else {
+        this.lastCheckedValue = this.grid.checkAllSquares()
+        this.allChecks()
+      }
+    }
   }
 }
 
