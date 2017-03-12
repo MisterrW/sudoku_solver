@@ -16,8 +16,8 @@ class Square {
 
   listRemainingPossibilities() {
     let possiblitiesList = []
-    this.possibles.forEach((possibile, index) => {
-      if (possibile === true) {
+    this.possibles.forEach((possible, index) => {
+      if (possible === true) {
         possiblitiesList.push(index+1)
       }
     })
