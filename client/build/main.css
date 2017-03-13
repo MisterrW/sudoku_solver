@@ -1,0 +1,27 @@
+div.grid-view{
+  display: flex;
+  flex-wrap: wrap;
+  width:450px;
+  height:450px;
+}
+
+div.row-view{
+  display: flex;
+  width:450px;
+  height:50px;
+}
+
+div.square-view{
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  font-size: 30px
+}
+
+h2{
+  color: red
+}
