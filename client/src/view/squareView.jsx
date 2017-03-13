@@ -4,7 +4,6 @@ var ReactDOM = require('react-dom');
 class SquareView extends React.Component{
   constructor(props){
     super(props)
-    console.log(props.square)
   }
   render(){
 

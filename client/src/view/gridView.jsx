@@ -6,13 +6,10 @@ var RowView = require('./rowView.jsx')
 class GridView extends React.Component{
   constructor(props){
     super(props)
-    console.log("in gridView constructor")
-    console.log(props.grid[0])
   }
   render(){
     const rows = []
     this.props.grid.forEach((row) => {
-        console.log("row")
         rows.push(<RowView row={row}></RowView>)
       })
 

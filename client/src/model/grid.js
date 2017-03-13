@@ -28,6 +28,21 @@ class Grid {
     return completedSquares
   }
 
+  countAllPossibles(){
+    let remainingPossibles = 0
+    for(var c = 0; c < this.grid[0].length; c++){
+      for(var r = 0; r < this.grid.length; r++) {
+        this.grid[r][c].possibles.forEach((possible) => {
+          if(possible === true){
+            remainingPossibles += 1
+          }
+        })
+      }
+    }
+    console.log("remaining possibles", remainingPossibles)
+    return remainingPossibles
+  }
+
   printGrid(){
     const gridToPrint = [[], [], [], [], [], [], [], [], []]
 
@@ -45,7 +60,7 @@ class Grid {
 
     console.log("Grid printing.")
     gridToPrint.forEach((row) => {
-      // console.log(row)
+      console.log(row)
     })
 
   }

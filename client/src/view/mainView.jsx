@@ -4,7 +4,6 @@ var GridView = require('./gridView.jsx')
 
 class MainView {
   update(grid){
-    console.log("in mainview update method")
     ReactDOM.render(
 
       <GridView grid={grid}/>,

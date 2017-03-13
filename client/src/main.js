@@ -24,7 +24,7 @@ class Main {
 
     ]
     this.easyGrid = [
-    // easy
+      // easy
       [[1], [ ], [ ], [5], [2], [ ], [ ], [ ], [9]],
       [[2], [3], [ ], [1], [4], [6], [5], [ ], [7]],
       [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [2], [ ]],
@@ -37,7 +37,7 @@ class Main {
 
     ]
 
-    this.medGridTwo = [
+    this.medGrid2 = [
 
       [[ ], [8], [3], [ ], [ ], [2], [4], [ ], [ ]],
       [[ ], [4], [ ], [3], [ ], [7], [ ], [ ], [ ]],
@@ -93,10 +93,10 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.medGridTwo
+    this.testGrid = this.hardGrid
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
-    this.grid.printGrid()
+    // this.grid.printGrid()
     this.completeCheck()
   }
 
@@ -127,13 +127,14 @@ class Main {
       console.log("game complete in", this.rounds, "rounds of checks")
     } else {
       console.log("round", this.rounds+1)
-      if (this.lastCheckedValue === this.grid.checkAllSquares()){
+      if (this.lastCheckedValue === this.grid.countAllPossibles()){
+        // if(1 !== 1) {
         console.log("I can't solve this. Make me better!")
         this.grid.printGrid()
-        this.mainView.update()
+        this.mainView.update(this.grid.grid)
       } else {
         this.rounds += 1
-        this.lastCheckedValue = this.grid.checkAllSquares()
+        this.lastCheckedValue = this.grid.countAllPossibles()
         var nextRound = setTimeout(this.allChecks.bind(this), 1000)
       }
     }
