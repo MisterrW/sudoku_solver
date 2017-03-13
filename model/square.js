@@ -46,21 +46,13 @@ class Square {
   }
 
   setValueFromPossible(index){
-    console.log("in set value from possible")
-    console.log(this.value)
-    console.log(index)
     this.value = index+1
-    console.log(this.value)
-
     this.possibles.forEach((possible, index) => {
       if(index !== this.value -1){
-        console.log(possible)
         this.possibles[index] = false
       }
     })
-    console.log(this.possibles)
   }
-
 }
 
 module.exports = Square

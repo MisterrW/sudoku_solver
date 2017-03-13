@@ -35,6 +35,20 @@ class Main {
 
     ]
 
+    this.medGridTwo = [
+
+      [[ ], [8], [3], [ ], [ ], [2], [4], [ ], [ ]],
+      [[ ], [4], [ ], [3], [ ], [7], [ ], [ ], [ ]],
+      [[ ], [6], [ ], [ ], [ ], [ ], [ ], [3], [8]],
+      [[3], [ ], [5], [ ], [ ], [ ], [ ], [1], [ ]],
+      [[ ], [ ], [ ], [9], [ ], [8], [ ], [ ], [ ]],
+      [[ ], [1], [ ], [ ], [ ], [ ], [6], [ ], [2]],
+      [[4], [2], [ ], [ ], [ ], [ ], [ ], [7], [ ]],
+      [[ ], [ ], [ ], [4], [ ], [1], [ ], [8], [ ]],
+      [[ ], [ ], [8], [7], [ ], [ ], [3], [2], [ ]],
+
+    ]
+
     // this.testGrid = [
     //
     //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
@@ -49,7 +63,7 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.medGrid
+    this.testGrid = this.medGridTwo
 
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
@@ -59,20 +73,21 @@ class Main {
   }
 
   allChecks(){
-    console.log("Checking rows")
+    console.log("Checking rows...")
     this.check.rows(this.grid)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
 
-    console.log("Checking columns")
+    console.log("Checking columns...")
     this.check.columns(this.grid)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
 
-    console.log("Checking 3x3s")
+    console.log("Checking 3x3s...")
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
-    // this.grid.printGrid()
+
+    this.grid.printGrid()
 
     this.completeCheck()
   }
@@ -89,12 +104,9 @@ class Main {
       if (this.lastCheckedValue === this.grid.checkAllSquares()){
         console.log("I can't solve this. Make me better!")
         this.grid.printGrid()
-        console.log(this.grid.grid[1][4])
-        console.log(this.grid.grid[2][3])
-        console.log(this.grid.grid[2][4])
       } else {
         this.lastCheckedValue = this.grid.checkAllSquares()
-        this.allChecks()
+        var nextRound = setTimeout(this.allChecks.bind(this), 1000)
       }
     }
   }
