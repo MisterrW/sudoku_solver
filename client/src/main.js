@@ -1,11 +1,13 @@
 var Grid = require('./model/grid.js')
 var Check = require('./model/check.js')
+var MainView = require('./view/mainView.jsx')
 
 class Main {
 
   constructor(){
-
+    console.log("in main constructor")
     this.check = new Check()
+    this.mainView = new MainView()
     this.rounds = 0
 
     this.medGrid = [
@@ -49,6 +51,34 @@ class Main {
 
     ]
 
+    this.hardGrid = [
+
+      [[ ], [ ], [7], [ ], [8], [ ], [4], [ ], [6]],
+      [[ ], [ ], [ ], [1], [ ], [4], [ ], [ ], [ ]],
+      [[ ], [9], [8], [ ], [ ], [ ], [ ], [ ], [2]],
+      [[ ], [3], [ ], [ ], [ ], [ ], [ ], [9], [8]],
+      [[ ], [ ], [ ], [3], [6], [9], [ ], [ ], [ ]],
+      [[6], [4], [ ], [ ], [ ], [ ], [ ], [1], [ ]],
+      [[1], [ ], [ ], [ ], [ ], [ ], [7], [6], [ ]],
+      [[ ], [ ], [ ], [7], [ ], [8], [ ], [ ], [ ]],
+      [[7], [ ], [5], [ ], [9], [ ], [8], [ ], [ ]],
+
+    ]
+
+    this.hardGrid2 = [
+
+      [[7], [9], [5], [ ], [ ], [ ], [ ], [ ], [3]],
+      [[ ], [ ], [ ], [8], [ ], [4], [ ], [ ], [ ]],
+      [[ ], [ ], [4], [9], [ ], [ ], [ ], [ ], [7]],
+      [[ ], [ ], [3], [ ], [ ], [ ], [6], [ ], [2]],
+      [[ ], [8], [ ], [ ], [1], [ ], [ ], [3], [ ]],
+      [[5], [ ], [7], [ ], [ ], [ ], [1], [ ], [ ]],
+      [[1], [ ], [ ], [ ], [ ], [2], [9], [ ], [ ]],
+      [[ ], [ ], [ ], [4], [ ], [9], [ ], [ ], [ ]],
+      [[9], [ ], [ ], [ ], [ ], [ ], [3], [5], [6]],
+
+    ]
+
     // this.testGrid = [
     //
     //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
@@ -64,12 +94,10 @@ class Main {
     // ]
 
     this.testGrid = this.medGridTwo
-
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
     this.grid.printGrid()
-
-    this.allChecks()
+    this.completeCheck()
   }
 
   allChecks(){
@@ -88,23 +116,23 @@ class Main {
     this.grid.checkAllSquares()
 
     this.grid.printGrid()
-
+    this.mainView.update(this.grid.grid)
     this.completeCheck()
   }
 
   completeCheck(){
-    this.rounds += 1
     console.log(this.grid.checkAllSquares())
 
     if (this.grid.checkAllSquares() === 81){
-      this.grid.printGrid()
       console.log("game complete in", this.rounds, "rounds of checks")
     } else {
       console.log("round", this.rounds+1)
       if (this.lastCheckedValue === this.grid.checkAllSquares()){
         console.log("I can't solve this. Make me better!")
         this.grid.printGrid()
+        this.mainView.update()
       } else {
+        this.rounds += 1
         this.lastCheckedValue = this.grid.checkAllSquares()
         var nextRound = setTimeout(this.allChecks.bind(this), 1000)
       }
