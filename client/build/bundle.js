@@ -9999,10 +9999,26 @@ var SquareView = function (_React$Component) {
   _createClass(SquareView, [{
     key: 'render',
     value: function render() {
+      var printPossibilitiesString = "";
+      if (!this.props.square.value) {
+        var printPossibilities = [];
+
+        this.props.square.possibles.forEach(function (possible, index) {
+          if (possible === true) {
+            printPossibilities.push(index + 1);
+          }
+        });
+        printPossibilitiesString = printPossibilities.join(", ");
+      }
 
       return React.createElement(
         'div',
         { className: 'square-view' },
+        React.createElement(
+          'div',
+          { style: { fontSize: "10px", color: "red" } },
+          printPossibilitiesString
+        ),
         this.props.square.value ? React.createElement(
           'div',
           null,
