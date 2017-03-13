@@ -82,11 +82,13 @@ class Main {
     console.log(this.grid.checkAllSquares())
 
     if (this.grid.checkAllSquares() === 81){
+      this.grid.printGrid()
       console.log("game complete in", this.rounds, "rounds of checks")
     } else {
       console.log("round", this.rounds+1)
       if (this.lastCheckedValue === this.grid.checkAllSquares()){
         console.log("I can't solve this. Make me better!")
+        this.grid.printGrid()
         console.log(this.grid.grid[1][4])
         console.log(this.grid.grid[2][3])
         console.log(this.grid.grid[2][4])

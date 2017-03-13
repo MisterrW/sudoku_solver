@@ -2,7 +2,7 @@ class Square {
 
   constructor(data){
     this.possibles = [true, true, true, true, true, true, true, true, true]
-    if(data.value){
+    if(data && data.value){
       this.value = data.value
       this.possibles = [false, false, false, false, false, false, false, false, false]
       this.possibles.forEach((possible, index) => {
@@ -46,7 +46,19 @@ class Square {
   }
 
   setValueFromPossible(index){
+    console.log("in set value from possible")
+    console.log(this.value)
+    console.log(index)
     this.value = index+1
+    console.log(this.value)
+
+    this.possibles.forEach((possible, index) => {
+      if(index !== this.value -1){
+        console.log(possible)
+        this.possibles[index] = false
+      }
+    })
+    console.log(this.possibles)
   }
 
 }

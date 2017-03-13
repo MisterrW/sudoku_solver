@@ -69,6 +69,7 @@ class Check{
               }
             })
             if(unique === true){
+              console.log("one true index is", index1)
               square.setValueFromPossible(index1)
             }
           }
