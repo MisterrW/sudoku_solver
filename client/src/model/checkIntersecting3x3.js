@@ -6,6 +6,7 @@ class CheckIntersecting3x3{
   }
 
   initiate(gridObj){
+    this.gridObj = gridObj
     this.grid = gridObj.grid
     this.threeXThrees = this.check.getThreeXThrees(gridObj)
     // this.grid.forEach((row) => {
@@ -15,13 +16,12 @@ class CheckIntersecting3x3{
     //     }
     //   })
     // })
-    this.checkAllAgainst(this.grid[0][0])
+    this.checkAllAgainst(this.grid[7][7])
   }
 
   checkAllAgainst(square){
-    console.log(square)
-    console.log(this.threeXThrees)
-    this.checkRowDoesIntersect(square)
+    // console.log(this.threeXThrees)
+    // this.checkRowDoesIntersect(square)
     this.checkColumnDoesIntersect(square)
 
   }
@@ -36,8 +36,7 @@ class CheckIntersecting3x3{
         }
       })
     })
-    console.log("row: ")
-    console.log(row)
+    // console.log("row: ", row)
     this.findIntersecting3x3s(row, square)
   }
 
@@ -53,11 +52,12 @@ class CheckIntersecting3x3{
         }
       })
     })
-    console.log("col: ")
-    console.log(col)
+    console.log("col: ", col)
+    this.findIntersecting3x3s(col, square)
   }
 
   findIntersecting3x3s(straight, square){
+    // console.log("straight:", straight)
     let intersecting3x3s = []
     this.threeXThrees.forEach((threeXThree) => {
       if (this.check3x3DoesIntersectAndDoesNotContainCheckingSquare(threeXThree, straight, square)){
@@ -66,6 +66,16 @@ class CheckIntersecting3x3{
     })
     console.log("intersecting3x3s:")
     console.log(intersecting3x3s)
+
+    if(intersecting3x3s.length !== 2){
+      // console.log("should always be 9:", straight.length)
+      // console.log(intersecting3x3s)
+    }
+
+    intersecting3x3s.forEach((threeXThree) => {
+      this.checkPossibilitiesAgainst(threeXThree, straight, square)
+    })
+
   }
 
   check3x3DoesIntersectAndDoesNotContainCheckingSquare(threeXThree, straight, squareBeingChecked){
@@ -79,41 +89,91 @@ class CheckIntersecting3x3{
         }
       })
     })
-    //check does not contain square being checkIfValueFound
+    //check does not contain square being checked
     threeXThree.forEach((squareIn3x3) => {
       if(squareIn3x3 === squareBeingChecked){
         doesNotContainsquareBeingChecked = false
       }
     })
 
-    return intersects && doesNotContainsquareBeingChecked ? true : false
+    if(intersects === true){
+      if(doesNotContainsquareBeingChecked === true){
+        return true
+      }
+    }
+    return false
   }
 
-  // check3x3DoesIntersect(straight, squareToPass){
-  //   let intersects = false
-  //   threeXThree.forEach((squareIn3x3) => {
-  //     //getting coords of threeXThree squares
-  //     grid.forEach((row, rowIndex) => {
-  //       row.forEach((square2, colIndex) => {
-  //         if(square2 == squareIn3x3){
-  //           console.log("square identified in 3x3 at ", colIndex, rowIndex)
-  //           console.log(square2)
-  //         }
-  //       })
-  //     })
-  //   })
-  // }
+  checkPossibilitiesAgainst(threeXThree, straight, squareBeingChecked){
+    squareBeingChecked.possibles.forEach((possible, index) => {
+      if(possible){
+        console.log("hello")
+        console.log("contains value in axis?", this.check3x3ContainsValueInAxis(threeXThree, straight, index))
+        let mustBeTrue1 = this.check3x3ContainsValueInAxis(threeXThree, straight, index)
+        let mustBeTrue2 = this.check3x3DoesNotContainValueOffAxis(threeXThree, straight, index)
 
-  check3x3DoesNotContainSquare(){
-
+        if(mustBeTrue1){
+          console.log("one down...")
+          if(mustBeTrue2){
+            console.log("Got one!")
+            console.log(index+1)
+            this.markOff(squareBeingChecked, index)
+          }
+        }
+      }
+    })
   }
 
-  check3x3ContainsValueInAxis(){
-
+  markOff(square, index){
+    this.gridObj.forEach((row) => {
+      row.forEach((squareToMark) => {
+        if (squareToMark === square){
+          squareToMark.markOff(index+1)
+        }
+      })
+    })
   }
 
-  check3x3DoesNotContainValueOffAxis(){
+  check3x3ContainsValueInAxis(threeXThree, straight, possibleIndex){
+    console.log(threeXThree, straight, possibleIndex)
+    console.log(straight[0].possibles)
+    threeXThree.forEach((square1) => {
+      straight.forEach((square2) => {
+        if(square1 === square2){
+          console.log("match")
+          console.log(square1)
+          if(square1.possibles[possibleIndex]){
+            console.log("yes")
+            return true
+          } else {
+            console.log("no")
+          }
+        }
+      })
+    })
+  }
 
+  check3x3DoesNotContainValueOffAxis(threeXThree, straight, possibleIndex){
+    let newTest3x3 = []
+    threeXThree.forEach((square) => {
+      newTest3x3.push(square)
+    })
+    newTest3x3.forEach((square1, index) => {
+      straight.forEach((square2) => {
+        if(square1 === square2){
+          newTest3x3.splice(index, 1)
+        }
+      })
+    })
+
+    // console.log("threeX3 with 3 elements removed due to intersect", newTest3x3)
+
+    newTest3x3.forEach((square1) => {
+      if(square1.possibles[possibleIndex]){
+        return false
+      }
+    })
+    return true
   }
 }
 

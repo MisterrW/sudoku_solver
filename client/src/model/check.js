@@ -39,7 +39,7 @@ class Check{
 
   threeXthrees(grid){
     const threeXThrees = this.getThreeXThrees(grid)
-    console.log(threeXThrees)
+    // console.log(threeXThrees)
     threeXThrees.forEach((threeXThree) => {
       this.unitMarkOff(threeXThree)
       this.unitCheckExclusivePossible(threeXThree)

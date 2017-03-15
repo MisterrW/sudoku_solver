@@ -81,6 +81,20 @@ class Main {
 
     ]
 
+    this.gridToTestIntersecting3x3s = [
+
+      [[ ], [ ], [ ], [ ], [ ], [ ], [7], [ ], [1]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [8], [ ], [2]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [9], [ ], [3]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+      [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
+
+    ]
+
     // this.testGrid = [
     //
     //   [[ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ], [ ]],
@@ -95,25 +109,25 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.hardGrid2
-    this.grid = new Grid(this.testGrid)
+    this.testGrid = this.medGrid2
+    this.grid = new Grid(this.gridToTestIntersecting3x3s)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
     this.completeCheck()
   }
 
   allChecks(){
-    console.log("Checking rows...")
+    // console.log("Checking rows...")
     this.check.rows(this.grid)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
 
-    console.log("Checking columns...")
+    // console.log("Checking columns...")
     this.check.columns(this.grid)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
 
-    console.log("Checking 3x3s...")
+    // console.log("Checking 3x3s...")
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
 
@@ -126,7 +140,8 @@ class Main {
   }
 
   completeCheck(){
-    console.log(this.grid.checkAllSquares())
+    // console.log(
+      this.grid.checkAllSquares()
 
     if (this.grid.checkAllSquares() === 81){
       console.log("game complete in", this.rounds, "rounds of checks")
@@ -140,8 +155,8 @@ class Main {
       } else {
         this.rounds += 1
         this.lastCheckedValue = this.grid.countAllPossibles()
-        var nextRound = setTimeout(this.allChecks.bind(this), 1000)
-        // this.allChecks()
+        // var nextRound = setTimeout(this.allChecks.bind(this), 1000)
+        this.allChecks()
       }
     }
   }

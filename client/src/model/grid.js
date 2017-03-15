@@ -58,9 +58,9 @@ class Grid {
       })
     })
 
-    console.log("Grid printing.")
+    // console.log("Grid printing.")
     gridToPrint.forEach((row) => {
-      console.log(row)
+      // console.log(row)
     })
 
   }
