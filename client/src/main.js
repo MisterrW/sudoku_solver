@@ -93,7 +93,7 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.hardGrid
+    this.testGrid = this.hardGrid2
     this.grid = new Grid(this.testGrid)
     this.grid.checkAllSquares()
     // this.grid.printGrid()
@@ -130,12 +130,13 @@ class Main {
       if (this.lastCheckedValue === this.grid.countAllPossibles()){
         // if(1 !== 1) {
         console.log("I can't solve this. Make me better!")
-        this.grid.printGrid()
+        // this.grid.printGrid()
         this.mainView.update(this.grid.grid)
       } else {
         this.rounds += 1
         this.lastCheckedValue = this.grid.countAllPossibles()
-        var nextRound = setTimeout(this.allChecks.bind(this), 1000)
+        // var nextRound = setTimeout(this.allChecks.bind(this), 1000)
+        this.allChecks()
       }
     }
   }

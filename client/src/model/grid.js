@@ -39,7 +39,7 @@ class Grid {
         })
       }
     }
-    console.log("remaining possibles", remainingPossibles)
+    // console.log("remaining possibles", remainingPossibles)
     return remainingPossibles
   }
 
