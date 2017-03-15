@@ -135,8 +135,8 @@ class Main {
       } else {
         this.rounds += 1
         this.lastCheckedValue = this.grid.countAllPossibles()
-        // var nextRound = setTimeout(this.allChecks.bind(this), 1000)
-        this.allChecks()
+        var nextRound = setTimeout(this.allChecks.bind(this), 1000)
+        // this.allChecks()
       }
     }
   }
