@@ -6,22 +6,25 @@ class SquareView extends React.Component{
     super(props)
   }
   render(){
-    let printPossibilitiesString=""
+    let printPossibilities = []
     if(! this.props.square.value){
-      let printPossibilities = []
-
       this.props.square.possibles.forEach((possible, index) => {
         if (possible === true) {
-          printPossibilities.push(index + 1)
+          printPossibilities.push(<div className="possible-view">{index + 1}</div>)
+        } else {
+          printPossibilities.push(<div className="possible-view"></div>)
         }
       })
-      printPossibilitiesString = printPossibilities.join(", ")
     }
 
     return (
-      <div className='square-view'>
-        <div style={{fontSize: "10px", color: "red"}}>{printPossibilitiesString}</div>
-        { this.props.square.value? <div>{this.props.square.value}</div> : null }
+      <div>
+
+        { this.props.square.value? <div className='square-view'>{this.props.square.value}</div>
+        :
+        (<div className='square-view'>
+          {printPossibilities}
+        </div>) }
       </div>
     )
   }
