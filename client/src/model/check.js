@@ -20,8 +20,9 @@ class Check{
     }
   }
 
-  threeXthrees(grid){
+  getThreeXThrees(grid){
     const starts = [0, 3, 6]
+    const threeXThrees = []
     starts.forEach((colStart) => {
       starts.forEach((rowStart) => {
         let threeXThree = []
@@ -30,22 +31,18 @@ class Check{
             threeXThree.push(grid.grid[colStart+i][rowStart+j])
           }
         }
-        if (rowStart = 0 && colStart == 3){
-          console.log(grid.grid[rowStart][colStart])
-        }
-        threeXThree.forEach((square) => {
-          grid.grid.forEach((row, rowIndex) => {
-            row.forEach((square2, colIndex) => {
-              if(square2 == square){
-                console.log("square identified in 3x3 at ", rowIndex, colIndex)
-                console.log(square2)
-              }
-            })
-          })
-        })
-        this.unitMarkOff(threeXThree)
-        this.unitCheckExclusivePossible(threeXThree)
+        threeXThrees.push(threeXThree)
       })
+    })
+    return threeXThrees
+  }
+
+  threeXthrees(grid){
+    const threeXThrees = this.getThreeXThrees(grid)
+    console.log(threeXThrees)
+    threeXThrees.forEach((threeXThree) => {
+      this.unitMarkOff(threeXThree)
+      this.unitCheckExclusivePossible(threeXThree)
     })
   }
 

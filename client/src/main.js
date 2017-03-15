@@ -1,5 +1,6 @@
 var Grid = require('./model/grid.js')
 var Check = require('./model/check.js')
+var CheckIntersecting3x3 = require('./model/checkIntersecting3x3.js')
 var MainView = require('./view/mainView.jsx')
 
 class Main {
@@ -7,6 +8,7 @@ class Main {
   constructor(){
     console.log("in main constructor")
     this.check = new Check()
+    this.checkIntersecting3x3 = new CheckIntersecting3x3()
     this.mainView = new MainView()
     this.rounds = 0
 
@@ -114,6 +116,9 @@ class Main {
     console.log("Checking 3x3s...")
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
+
+    console.log("checking for constrained possibilities in intersected 3x3s")
+    this.checkIntersecting3x3.initiate(this.grid)
 
     this.grid.printGrid()
     this.mainView.update(this.grid.grid)
