@@ -33,6 +33,16 @@ class Check{
         if (rowStart = 0 && colStart == 3){
           console.log(grid.grid[rowStart][colStart])
         }
+        threeXThree.forEach((square) => {
+          grid.grid.forEach((row, rowIndex) => {
+            row.forEach((square2, colIndex) => {
+              if(square2 == square){
+                console.log("square identified in 3x3 at ", rowIndex, colIndex)
+                console.log(square2)
+              }
+            })
+          })
+        })
         this.unitMarkOff(threeXThree)
         this.unitCheckExclusivePossible(threeXThree)
       })
