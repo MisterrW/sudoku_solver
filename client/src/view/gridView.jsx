@@ -9,8 +9,8 @@ class GridView extends React.Component{
   }
   render(){
     const rows = []
-    this.props.grid.forEach((row) => {
-        rows.push(<RowView row={row}></RowView>)
+    this.props.grid.forEach((row, index) => {
+        rows.push(<RowView key={index} row={row}></RowView>)
       })
 
     return <div className='grid-view' >

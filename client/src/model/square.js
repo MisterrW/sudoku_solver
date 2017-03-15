@@ -11,6 +11,9 @@ class Square {
         }
       })
     }
+    if(data && data.possibles){
+      this.possibles = data.possibles
+    }
     // console.log(this.possibles)
   }
 

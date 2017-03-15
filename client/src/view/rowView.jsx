@@ -8,8 +8,8 @@ class RowView extends React.Component{
   }
   render(){
     const squares = []
-    this.props.row.forEach((square) => {
-        squares.push(<SquareView square={square}></SquareView>)
+    this.props.row.forEach((square, index) => {
+        squares.push(<SquareView key={index} square={square}></SquareView>)
       })
 
     return <div className="row-view">
