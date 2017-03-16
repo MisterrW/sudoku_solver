@@ -18,10 +18,7 @@ div.square-view{
   border: 1px solid black;
   flex-wrap: wrap;
   font-family: sans-serif;
-  font-size: 30px
-}
-
-div.value-view{
+  font-size: 30px;
   align-items: center;
   justify-content: center;
 }
@@ -29,9 +26,10 @@ div.value-view{
 div.possible-view{
   width: 16px;
   height: 16px;
-  font-size: 12px
+  font-size: 12px;
+  color: gray;
 }
 
-h2{
+h1{
   color: red
 }

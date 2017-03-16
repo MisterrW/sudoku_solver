@@ -1,9 +1,19 @@
 class Square {
 
   constructor(data){
-    this.possibles = [true, true, true, true, true, true, true, true, true]
+    this.possibles = [false, false, false, false, false, false, false, false, false]
     if(data && data.value){
       this.value = data.value
+    }
+    if(data && data.possibles){
+      this.possibles = data.possibles
+    }
+    // console.log(this.possibles)
+  }
+
+  setPossibles(data){
+    this.possibles = [true, true, true, true, true, true, true, true, true]
+    if(data && data.value){
       this.possibles = [false, false, false, false, false, false, false, false, false]
       this.possibles.forEach((possible, index) => {
         if (this.value-1 === index ){
@@ -11,10 +21,6 @@ class Square {
         }
       })
     }
-    if(data && data.possibles){
-      this.possibles = data.possibles
-    }
-    // console.log(this.possibles)
   }
 
   listRemainingPossibilities() {

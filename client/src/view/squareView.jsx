@@ -10,9 +10,9 @@ class SquareView extends React.Component{
     if(! this.props.square.value){
       this.props.square.possibles.forEach((possible, index) => {
         if (possible === true) {
-          printPossibilities.push(<div className="possible-view">{index + 1}</div>)
+          printPossibilities.push(<div className="possible-view" key={index+1}>{index + 1}</div>)
         } else {
-          printPossibilities.push(<div className="possible-view"></div>)
+          printPossibilities.push(<div className="possible-view" key={index+1}></div>)
         }
       })
     }

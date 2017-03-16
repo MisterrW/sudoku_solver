@@ -10,6 +10,7 @@ class Main {
     this.checkIntersecting3x3 = new CheckIntersecting3x3()
     this.mainView = new MainView()
     this.rounds = 0
+    this.timeUnit = 20
 
     this.medGrid = [
       //medium
@@ -179,39 +180,56 @@ class Main {
     //
     // ]
 
-
-
-
-
-    this.testGrid = this.evil
+    this.testGrid = this.extremeGrid2
     this.grid = new Grid(this.testGrid)
-    this.grid.checkAllSquares()
-    // this.grid.printGrid()
+    this.mainView.update(this.grid.grid)
+    var goNow = setTimeout(this.go.bind(this), 2000)
+  }
+
+  go(){
+    this.grid.buildPossibles()
     this.completeCheck()
   }
 
-  allChecks(){
+  checkRows(){
     console.log("Checking rows...")
     this.check.rows(this.grid)
     this.grid.checkAllSquares()
-    // this.grid.printGrid()
+    this.mainView.update(this.grid.grid)
+    this.grid.printGrid()
+  }
 
+  checkColumns(){
     console.log("Checking columns...")
     this.check.columns(this.grid)
     this.grid.checkAllSquares()
-    // this.grid.printGrid()
+    this.mainView.update(this.grid.grid)
+    this.grid.printGrid()
+  }
 
+  check3x3s(){
     console.log("Checking 3x3s...")
     this.check.threeXthrees(this.grid)
     this.grid.checkAllSquares()
+    this.mainView.update(this.grid.grid)
+    this.grid.printGrid()
+  }
 
+  checkIntersects(){
     console.log("checking for constrained possibilities in intersected 3x3s")
     this.checkIntersecting3x3.initiate(this.grid)
     this.grid.checkAllSquares()
 
     this.grid.printGrid()
     this.mainView.update(this.grid.grid)
-    this.completeCheck()
+  }
+
+  allChecks(){
+    var rows = setTimeout(this.checkRows.bind(this), this.timeUnit*5)
+    var cols = setTimeout(this.checkColumns.bind(this), this.timeUnit*10)
+    var threes = setTimeout(this.check3x3s.bind(this), this.timeUnit*15)
+    var intersects = setTimeout(this.checkIntersects.bind(this), this.timeUnit*20)
+    var complete = setTimeout(this.completeCheck.bind(this), this.timeUnit*20)
   }
 
   completeCheck(){
@@ -227,7 +245,7 @@ class Main {
       } else {
         this.rounds += 1
         this.lastCheckedValue = this.grid.countAllPossibles()
-        var nextRound = setTimeout(this.allChecks.bind(this), 1000)
+        var nextRound = setTimeout(this.allChecks.bind(this), 0)
       }
     }
   }

@@ -2,15 +2,28 @@ var Square = require('./square')
 
 class Grid {
   constructor(inputGrid){
+    this.inputGrid = inputGrid
     this.grid = []
 
-    inputGrid.forEach((row, rowIndex) => {
+    this.inputGrid.forEach((row, rowIndex) => {
       this.grid[rowIndex] = []
       row.forEach((square, columnIndex) => {
         if (square !== "-") {
           this.grid[rowIndex][columnIndex] = new Square({value: square[0]})
         } else {
           this.grid[rowIndex][columnIndex] = new Square()
+        }
+      })
+    })
+  }
+
+  buildPossibles(){
+    this.inputGrid.forEach((row, rowIndex) => {
+      row.forEach((square, columnIndex) => {
+        if (square !== "-") {
+          this.grid[rowIndex][columnIndex].setPossibles({value: square[0]})
+        } else {
+          this.grid[rowIndex][columnIndex].setPossibles()
         }
       })
     })
@@ -39,7 +52,7 @@ class Grid {
         })
       }
     }
-    // console.log("remaining possibles", remainingPossibles)
+    console.log("remaining possibles", remainingPossibles)
     return remainingPossibles
   }
 
@@ -58,9 +71,9 @@ class Grid {
       })
     })
 
-    // console.log("Grid printing.")
+    console.log("Grid printing.")
     gridToPrint.forEach((row) => {
-      // console.log(row)
+      console.log(row)
     })
 
   }
