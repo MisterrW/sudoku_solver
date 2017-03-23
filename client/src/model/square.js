@@ -16,7 +16,7 @@ class Square {
     if(data && data.value){
       this.possibles = [false, false, false, false, false, false, false, false, false]
       this.possibles.forEach((possible, index) => {
-        if (this.value-1 === index ){
+        if (this.value-1 === index){
           this.possibles[index] = true
         }
       })
