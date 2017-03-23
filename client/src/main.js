@@ -180,7 +180,7 @@ class Main {
     //
     // ]
 
-    this.testGrid = this.extremeGrid2
+    this.testGrid = this.evil
     this.grid = new Grid(this.testGrid)
     this.mainView.update(this.grid.grid)
     var goNow = setTimeout(this.go.bind(this), 2000)
